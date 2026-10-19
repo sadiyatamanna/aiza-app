@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>AIZA</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	
+	<!-- Privacy Permissions for iOS Safety Functionality -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>AIZA requires access to your location to track your position in emergencies and locate nearby safe zones.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>AIZA requires continuous background location access to provide real-time location sharing during active emergency SOS alerts.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>AIZA uses background location updates to keep your emergency contacts informed during active distress alerts.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>AIZA uses microphone access exclusively for hands-free emergency voice keyword recognition (such as 'help' or 'emergency'). No audio is recorded or uploaded to cloud storage.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>AIZA utilizes on-device speech recognition to trigger emergency SOS upon hearing designated distress phrases.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>AIZA connects to ESP32 SOS-WEAR physical panic buttons over Bluetooth Low Energy (BLE) to detect emergency button presses.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>AIZA communicates with Bluetooth Low Energy panic button peripherals.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>AIZA uses the device camera flash unit for high-visibility emergency visual signaling (torch/strobe).</string>
+	<key>NSMotionUsageDescription</key>
+	<string>AIZA uses accelerometer motion sensing to detect emergency shake-to-SOS gestures.</string>
+
+	<!-- iOS Background Modes -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+	</array>
+
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

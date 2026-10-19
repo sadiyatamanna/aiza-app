@@ -1,0 +1,25 @@
+platform :ios, '14.0'
+prepare_react_native_project!
+
+target 'aegis-app' do
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => true
+  )
+
+  # SQLite local storage
+  pod 'react-native-quick-sqlite', :path => '../node_modules/react-native-quick-sqlite'
+
+  # Native Maps
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+  # Navigation & Layout
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+  pod 'react-native-screens', :path => '../node_modules/react-native-screens'
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+  pod 'async-storage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
+  target 'aegis-appTests' do
+    inherit! :complete
+  end
+end

@@ -1,0 +1,6 @@
+{
+  "name": "AIZA",
+  "description": "AIZA - Continuous personal safety featuring instant SOS dispatch, Bluetooth SPP wearable trigger, offline SQLite persistence, live GPS location tracking, and NIST FIPS 203/204 Post-Quantum Cryptography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

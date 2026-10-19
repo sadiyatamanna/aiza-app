@@ -1,0 +1,62 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useSafetyStore = void 0;
+const zustand_1 = require("zustand");
+exports.useSafetyStore = (0, zustand_1.create)((set) => ({
+    currentUser: null,
+    session: null,
+    userProfile: null,
+    isAuthenticated: false,
+    isOfflineMode: false,
+    currentLocation: null,
+    lastKnownLocation: null,
+    locationSharingEnabled: true,
+    batteryLevel: 100,
+    sosActive: false,
+    sosCountdownRemaining: 0,
+    activeSosAlert: null,
+    recentSosTrigger: null,
+    bluetoothEnabled: false,
+    hardwareSosConnected: false,
+    voiceSosEnabled: true,
+    shakeSosEnabled: true,
+    networkAvailable: true,
+    contacts: [],
+    sosLogs: [],
+    trackedLocations: [],
+    cachedPlaces: [],
+    safeZones: [],
+    setAuthSession: (user, session) => set({
+        currentUser: user,
+        session: session,
+        isAuthenticated: !!session && !!user,
+    }),
+    setUserProfile: (profile) => set((state) => ({
+        userProfile: profile,
+        isAuthenticated: !!profile || !!state.currentUser,
+    })),
+    setCurrentLocation: (loc) => set({
+        currentLocation: loc,
+        lastKnownLocation: { latitude: loc.latitude, longitude: loc.longitude },
+    }),
+    setLocationSharingEnabled: (enabled) => set({ locationSharingEnabled: enabled }),
+    setBluetoothEnabled: (enabled) => set({ bluetoothEnabled: enabled }),
+    setHardwareSosConnected: (connected) => set({ hardwareSosConnected: connected }),
+    setVoiceSosEnabled: (enabled) => set({ voiceSosEnabled: enabled }),
+    setShakeSosEnabled: (enabled) => set({ shakeSosEnabled: enabled }),
+    setNetworkAvailable: (available) => set({ networkAvailable: available }),
+    setContacts: (contacts) => set({ contacts }),
+    setSosLogs: (sosLogs) => set({ sosLogs }),
+    setTrackedLocations: (trackedLocations) => set({ trackedLocations }),
+    setCachedPlaces: (cachedPlaces) => set({ cachedPlaces }),
+    setSafeZones: (safeZones) => set({ safeZones }),
+    triggerSos: (source) => set({
+        sosActive: true,
+        recentSosTrigger: source,
+        sosCountdownRemaining: 0,
+    }),
+    cancelSos: () => set({
+        sosActive: false,
+        sosCountdownRemaining: 0,
+    }),
+}));
