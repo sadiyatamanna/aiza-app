@@ -3624,12 +3624,18 @@ class SafetyViewModel @JvmOverloads constructor(
     // -------------------------------------------------------------------------
 
     fun selectEvidence(record: com.example.data.evidence.EvidenceRecordEntity?) {
+        clearDecryptedPreview()
         _selectedEvidence.value = record
-        _decryptedEvidence.value = null
-        _evidenceVerificationResult.value = null
     }
 
     fun clearDecryptedPreview() {
+        try {
+            _decryptedEvidence.value?.decryptedFile?.let { file ->
+                if (file.exists()) {
+                    file.delete()
+                }
+            }
+        } catch (_: Exception) {}
         _decryptedEvidence.value = null
         _evidenceVerificationResult.value = null
     }

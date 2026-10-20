@@ -345,21 +345,21 @@ class AuthRepository(
      * Updates the authenticated user's password in Supabase Auth (e.g. after deep-link recovery).
      */
     suspend fun updateUserPassword(newPassword: String): Result<Unit> {
-        if (newPassword.length < 6) {
-            return Result.failure(IllegalArgumentException("Password must be at least 6 characters."))
-        }
-        return try {
-            supabaseClient.auth.updateUser {
-                this.password = newPassword
-            }
-            Log.d("AuthRepository", "User password updated successfully via Supabase Auth.")
-            Result.success(Unit)
-        } catch (e: Exception) {
-            val cleanMsg = sanitizeAuthErrorMessage(e)
-            Log.w("AuthRepository", "Password update error: $cleanMsg")
-            Result.failure(Exception(cleanMsg, e))
-        }
+    if (newPassword.length < 6) {
+        return Result.failure(IllegalArgumentException("Password must be at least 6 characters."))
     }
+    return try {
+        supabaseClient.auth.updateUser {
+            this.password = newPassword
+        }
+        Log.d("AuthRepository", "User password updated successfully via Supabase Auth.")
+        Result.success(Unit)
+    } catch (e: Exception) {
+        val cleanMsg = sanitizeAuthErrorMessage(e)
+        Log.w("AuthRepository", "Password update error: $cleanMsg")
+        Result.failure(Exception(cleanMsg, e))
+    }
+}
 
     /**
      * Real Supabase phone OTP sign-in / OTP request.

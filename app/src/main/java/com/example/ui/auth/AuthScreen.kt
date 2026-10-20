@@ -377,11 +377,11 @@ fun AuthScreen(
                                         userPhoneError = false
                                     },
                                     placeholder = { Text("9876543210") },
-                                    label = { Text("Your Personal Mobile") },
+                                    label = { Text("Your Phone Number") },
                                     leadingIcon = {
                                         Icon(
                                             Icons.Default.PhoneIphone,
-                                            contentDescription = "Your Mobile",
+                                            contentDescription = "Your Phone Number",
                                             tint = MaterialTheme.colorScheme.primary
                                         )
                                     },
@@ -400,7 +400,7 @@ fun AuthScreen(
                                 )
                                 if (userPhoneError) {
                                     Text(
-                                        text = "Please enter a valid personal phone number (7-15 digits).",
+                                        text = "Please enter a valid phone number (7-15 digits).",
                                         color = Color.Red,
                                         fontSize = 11.sp,
                                         modifier = Modifier.padding(top = 2.dp)
@@ -636,7 +636,11 @@ fun AuthScreen(
                     )
                 },
                 text = {
-                    Column(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState())
+                    ) {
                         Text(
                             text = "Enter the Gmail address associated with your AIZA account. We will send a password reset link via Supabase Auth.",
                             color = CurrentTextMuted,
@@ -757,7 +761,11 @@ fun AuthScreen(
                     )
                 },
                 text = {
-                    Column(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState())
+                    ) {
                         Text(
                             text = "Supabase requires email confirmation for:\n$emailConfirmationTarget\n\nPlease check your inbox (including spam) for the confirmation link, or enter your 6-digit confirmation code below:",
                             color = CurrentTextMuted,

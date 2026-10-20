@@ -306,7 +306,9 @@ fun ProfileScreen(
             text = {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
                 ) {
                     if (email.isNotBlank()) {
                         Text(
@@ -349,7 +351,7 @@ fun ProfileScreen(
                                 phoneError = false
                             }
                         },
-                        label = { Text("Phone Number (+91)") },
+                        label = { Text("Your Phone Number") },
                         placeholder = { Text("+91 9876543210") },
                         isError = phoneError,
                         colors = OutlinedTextFieldDefaults.colors(

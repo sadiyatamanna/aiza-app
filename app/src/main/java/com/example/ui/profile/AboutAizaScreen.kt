@@ -283,7 +283,7 @@ private fun AboutDescriptionCard() {
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "AIZA is a personal safety and emergency communication application designed to help users quickly respond to dangerous situations and stay connected with trusted contacts.\n\nThe app combines emergency SOS activation, guardian communication, location sharing, emergency incident tracking, and security-focused communication features in one platform.",
+                text = "AIZA is a women's safety and emergency communication application designed to help users quickly respond to dangerous situations and stay connected with trusted contacts.\n\nThe app combines emergency SOS activation, guardian communication, location sharing, emergency incident tracking, and security-focused communication features in one platform. While currently implemented natively on Android, expanded support for additional platforms including iOS is planned.",
                 style = MaterialTheme.typography.bodyMedium.copy(
                     lineHeight = 22.sp
                 ),
@@ -513,7 +513,7 @@ private fun AboutPostQuantumSecurityCard() {
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "AIZA includes post-quantum cryptography support as part of its security architecture.\n\nThe Android implementation uses modern post-quantum cryptographic algorithms through the Bouncy Castle cryptographic library, including ML-KEM and ML-DSA, together with AES-256-GCM for authenticated symmetric encryption.\n\nThese technologies are designed to provide protection against security threats from both current and future computing environments.",
+                text = "AIZA includes post-quantum cryptography support as part of its security architecture.\n\nThe security architecture uses modern post-quantum cryptographic algorithms through the Bouncy Castle cryptographic library, including ML-KEM and ML-DSA, together with AES-256-GCM for authenticated symmetric encryption.\n\nThese technologies are designed to provide protection against security threats from both current and future computing environments.",
                 style = MaterialTheme.typography.bodyMedium.copy(
                     lineHeight = 22.sp
                 ),
@@ -558,7 +558,7 @@ private fun AboutTechnologySection() {
                 "ML-KEM",
                 "ML-DSA",
                 "AES-256-GCM",
-                "Android Location Services",
+                "Location Services",
                 "Bluetooth communication"
             )
 
@@ -695,7 +695,7 @@ private fun AboutAppInformationCard() {
                 "App Name" to "AIZA",
                 "Tagline" to "Your Safety, Our Priority",
                 "Developer" to "Tam",
-                "Platform" to "Android",
+                "Platform" to "Android (Cross-Platform Mobile Planned)",
                 "Architecture" to "MVVM + Jetpack Compose",
                 "Version" to BuildConfig.VERSION_NAME
             )

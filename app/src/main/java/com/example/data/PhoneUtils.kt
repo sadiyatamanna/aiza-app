@@ -32,7 +32,7 @@ object PhoneUtils {
                 val digits = cleaned.filter { it.isDigit() }
                 if (digits.isEmpty()) {
                     ""
-                } else if (digits.length >= 10 && !digits.startsWith(ccDigits)) {
+                } else if (digits.length in 7..12 && !digits.startsWith(ccDigits)) {
                     "$cc$digits"
                 } else {
                     "+$digits"

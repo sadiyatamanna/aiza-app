@@ -2,11 +2,16 @@ package com.example.ui.evidence
 
 import android.graphics.BitmapFactory
 import android.media.MediaPlayer
+import android.widget.MediaController
+import android.widget.VideoView
 import androidx.activity.compose.BackHandler
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -601,6 +606,7 @@ fun DecryptedEvidenceViewerDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
                     .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -730,21 +736,69 @@ fun DecryptedEvidenceViewerDialog(
                         }
                     } else if (record?.evidenceType == EvidenceType.VIDEO) {
                         Surface(
-                            color = StatusEmerald.copy(alpha = 0.08f),
+                            color = MinimalWhiteSurface,
                             shape = RoundedCornerShape(14.dp),
-                            border = BorderStroke(1.dp, StatusEmerald.copy(alpha = 0.3f)),
+                            border = BorderStroke(1.dp, CurrentBorder),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .testTag("decrypted_video_player")
                         ) {
                             Column(
-                                modifier = Modifier.padding(16.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                Icon(Icons.Default.Videocam, contentDescription = null, tint = StatusEmerald, modifier = Modifier.size(36.dp))
-                                Spacer(modifier = Modifier.height(6.dp))
-                                Text("Decrypted Video Recording", fontWeight = FontWeight.Bold, fontSize = 13.sp, color = CurrentTextPrimary)
-                                Text("Size: ${formatFileSize(file.length())}", fontSize = 11.sp, color = CurrentTextMuted)
+                                var playError by remember { mutableStateOf(false) }
+
+                                if (!playError) {
+                                    AndroidView(
+                                        factory = { ctx ->
+                                            VideoView(ctx).apply {
+                                                val mediaController = MediaController(ctx)
+                                                mediaController.setAnchorView(this)
+                                                setMediaController(mediaController)
+                                                setOnErrorListener { _, _, _ ->
+                                                    playError = true
+                                                    true
+                                                }
+                                                setVideoPath(file.absolutePath)
+                                                start()
+                                            }
+                                        },
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(200.dp)
+                                            .clip(RoundedCornerShape(10.dp))
+                                    )
+                                } else {
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(16.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Icon(
+                                            Icons.Default.Videocam,
+                                            contentDescription = null,
+                                            tint = MagentaPrimary,
+                                            modifier = Modifier.size(40.dp)
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            "Decrypted Video Evidence",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 13.sp,
+                                            color = CurrentTextPrimary
+                                        )
+                                        Text(
+                                            "Video playback preview. Size: ${formatFileSize(file.length())}",
+                                            fontSize = 11.sp,
+                                            color = CurrentTextMuted,
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
